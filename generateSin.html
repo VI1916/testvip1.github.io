@@ -1,0 +1,116 @@
+<html>
+<head>
+<script> var exports = {}; </script>
+<script src="index.js"></script>
+<script src="fake-numbers.min.js"></script>
+<script src="https://unpkg.com/@phuocng/fake-numbers@1.0.0/umd/fake-numbers.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<link rel="shortcut icon" href="sinfavicon.png" height="100%" width="100%" />
+<style>
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+};
+.parent {
+  display: flex;
+}
+.child {
+  align-self: flex-end;
+}
+</style>
+</head>
+
+<div style="padding: 1rem;" class="parent">
+<div style="border-color: black;">
+<h1>Fake Credit Card / Sin number generator</h1>
+</div>
+<button class="button" id="buttonSin" onclick="showHideSin()">Sin Generator</button>
+<button class="button" id="buttonCreditCard" onclick="showHideCreditCard()">Credit Card Generator</button>
+
+</br>
+
+<div id="toggleSin" style="display:none;">
+<h2>Sin Generator</h2><br />
+<input type="text" id="sin">
+
+<button onclick="copySin()">Copy Sin to clipboard</button>
+<button onclick="renewSin()">Refresh Sin</button>
+</br>
+</div>
+
+<div id="toggleCreditCard" style="display:none;">
+<h2>Credit Card Generator</h2><br />
+<input type="text" id="creditCard">
+
+<button onclick="copyCreditCard()">Copy CC to clipboard</button>
+<button onclick="renewCc()">Refresh Credit Card</button>
+</div>
+
+<div id="footer"  class="child" style="margin-top:1rem">
+Disclaimer : For testing purposes only.
+</div>
+</div>
+
+
+</html>
+<script>
+window.onload = function(e){
+	var sinNumber = FakeNumbers.sin.fake();
+	document.getElementById('sin').value=sinNumber;
+	var ceditCardNumber = FakeNumbers.creditCard.fake();
+	document.getElementById('creditCard').value=ceditCardNumber;
+}
+
+function showHideCreditCard() {
+  var y = document.getElementById("toggleCreditCard");
+  if (y.style.display === "none") {
+    y.style.display = "block";
+	document.getElementById('buttonCreditCard').style.backgroundColor = "#f44336;"
+  } else {
+    y.style.display = "none";
+	document.getElementById('buttonCreditCard').style.backgroundColor = "#4CAF50;"
+  }   
+}
+
+function showHideSin() {
+  var x = document.getElementById("toggleSin");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function copySin() {
+  var copyText = document.getElementById("sin");
+  copyText.select();
+  copyText.setSelectionRange(0, 999999999); 
+  document.execCommand("copy");
+}
+
+function copyCreditCard() {
+  var copyText1 = document.getElementById("creditCard");
+  copyText1.select();
+  copyText1.setSelectionRange(0, 9999999999999999); 
+  document.execCommand("copy");
+}
+
+function renewSin() {
+	var sinNumber = FakeNumbers.sin.fake();
+	document.getElementById('sin').value=sinNumber;
+}
+
+function renewCc() {
+	var ceditCardNumber = FakeNumbers.creditCard.fake();
+	document.getElementById('creditCard').value=ceditCardNumber;
+}
+
+</script>
